@@ -45,6 +45,7 @@ Partial Class Form1
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.SuspendLayout()
         '
         'Button1
@@ -244,11 +245,22 @@ Partial Class Form1
         Me.Button5.Text = "Do you like this software? DONATE!"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(506, 338)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(266, 13)
+        Me.LinkLabel1.TabIndex = 22
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Visit my profile: https://steemit.com/@moisesmcardona"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 365)
+        Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.WebBrowser1)
         Me.Controls.Add(Me.ListBox2)
@@ -303,4 +315,5 @@ Partial Class Form1
     Friend WithEvents ListBox2 As ListBox
     Friend WithEvents WebBrowser1 As WebBrowser
     Friend WithEvents Button5 As Button
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class
