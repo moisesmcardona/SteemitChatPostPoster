@@ -97,6 +97,7 @@ Public Class Form1
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ListBox2.Items.Clear()
+        SteemitLinks.Items.Clear()
         WebBrowser1.Navigate("https://steemit.com/" & SteemitUsername.Text)
 
     End Sub
