@@ -1,4 +1,6 @@
-﻿Imports Rocket.Chat.Net.Driver
+﻿Imports System.IO
+Imports System.Text
+Imports Rocket.Chat.Net.Driver
 Imports Rocket.Chat.Net.Interfaces
 Imports Rocket.Chat.Net.Models.LoginOptions
 
@@ -6,26 +8,26 @@ Public Class Form1
     Dim loginOption As ILoginOption
     Dim driver As IRocketChatDriver
     Dim SteemitLinks As New ListBox
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles AddToListButton.Click
         If String.IsNullOrEmpty(RoomName.Text) = False Then
             ListBox1.Items.Add(RoomName.Text)
-            If Button3.Enabled = False Then Button3.Enabled = True
+            If RemoveButton.Enabled = False Then RemoveButton.Enabled = True
         Else
             MsgBox("Channel Name cannot be empty. Please type a Channel Name")
         End If
 
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         If ListBox1.SelectedIndex <> -1 Then
             ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
         End If
         If ListBox1.Items.Count = 0 Then
-            Button3.Enabled = False
+            RemoveButton.Enabled = False
         End If
     End Sub
 
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles SendButton.Click
         Dim ErrorMessage As String = "The following fields are empty:" & vbCrLf
         Dim ErrorsFound As Boolean = False
         If String.IsNullOrEmpty(Server.Text) Then
@@ -80,12 +82,17 @@ Public Class Form1
             ListBox1.Items.Add(item)
         Next
         If ListBox1.Items.Count > 0 Then
-            Button3.Enabled = True
+            RemoveButton.Enabled = True
         End If
         If String.IsNullOrEmpty(My.Settings.SteemitUsername) Then
             SteemitUsername.Text = "@username"
         Else
             SteemitUsername.Text = My.Settings.SteemitUsername
+        End If
+        If My.Settings.Language = 1 Then
+            RadioButton1.Checked = True
+        Else
+            RadioButton2.Checked = True
         End If
 
     End Sub
@@ -95,38 +102,73 @@ Public Class Form1
         My.Settings.Save()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles GetPostsButton.Click
         ListBox2.Items.Clear()
         SteemitLinks.Items.Clear()
-        WebBrowser1.Navigate("https://steemit.com/" & SteemitUsername.Text)
-
+        Dim myWebRequest As Net.WebRequest = Net.WebRequest.Create("https://steemdb.com/" & SteemitUsername.Text & "/posts")
+        Dim myWebResponse As Net.WebResponse = myWebRequest.GetResponse()
+        Dim ReceiveStream As Stream = myWebResponse.GetResponseStream()
+        Dim encode As Encoding = System.Text.Encoding.GetEncoding("utf-8")
+        Dim readStream As New StreamReader(ReceiveStream, encode)
+        Dim RequestResult As String = readStream.ReadToEnd
+        Dim parse1 As CsQuery.CQ = CsQuery.CQ.Create(RequestResult, CsQuery.HtmlParsingMode.Auto, CsQuery.HtmlParsingOptions.IgnoreComments)
+        Dim parse2 As CsQuery.CQ = parse1("div.ui.internally.celled.stackable.grid > div")
+        For Each div In parse2
+            Dim innerHTML As CsQuery.CQ = div.InnerHTML
+            SteemitLinks.Items.Add(innerHTML("div.ui.large.header > a").Attr("href"))
+            ListBox2.Items.Add(innerHTML("div.ui.large.header > a").Text().TrimStart)
+        Next
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
         SteemitPostLink.Text = "https://steemit.com" & SteemitLinks.Items.Item(ListBox2.SelectedIndex)
     End Sub
 
-    Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
-        Try
-            Dim parse1 As CsQuery.CQ = CsQuery.CQ.Create(WebBrowser1.DocumentText, CsQuery.HtmlParsingMode.Auto, CsQuery.HtmlParsingOptions.IgnoreComments)
-            Dim parseArticle As CsQuery.CQ = parse1("article.PostSummary.hentry.with-image")
-            Dim SteemItURL As String = "https://steemit.com"
-            Dim SQLInsert As String = ""
-            For Each div In parseArticle
-                Dim innerHTML As CsQuery.CQ = div.InnerHTML
-                SteemitLinks.Items.Add(innerHTML("div.PostSummary__content > div.PostSummary__header.show-for-medium > h3 > a").Attr("href"))
-                ListBox2.Items.Add(innerHTML("div.PostSummary__content > div.PostSummary__header.show-for-medium > h3 > a").Text())
-            Next
-        Catch ex As Exception
-            MsgBox("An error has occured. Please check the error below: " & vbNewLine & ex.ToString)
-        End Try
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles VoteWitnessLink.LinkClicked
+        Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        If RadioButton1.Checked Then
+            ServerLabel.Text = "Server:"
+            UsernameLabel.Text = "Username:"
+            PasswordLabel.Text = "Password:"
+            ChannelNameLabel.Text = "Channel Name:"
+            AddToListButton.Text = "Add To List"
+            RemoveButton.Text = "Remove"
+            LinkLabel.Text = "Link of the Post to send to Steemit.Chat:"
+            SendButton.Text = "Send to Steemit.Chat!"
+            SteemitUsernameLabel.Text = "Your Steemit Username:"
+            GetPostsButton.Text = "Get your latest posts!"
+            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.1"
+            VoteWitnessLink.Text = "Click Here to Vote Him as Witness!"
+            DonateLink.Text = "Or Donate!"
+        End If
+        My.Settings.Language = 1
+        My.Settings.Save()
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        If RadioButton2.Checked Then
+            ServerLabel.Text = "Servidor:"
+            UsernameLabel.Text = "Usuario:"
+            PasswordLabel.Text = "Contraseña:"
+            ChannelNameLabel.Text = "Nombre del canal:"
+            AddToListButton.Text = "Añadir a Lista"
+            RemoveButton.Text = "Remover"
+            LinkLabel.Text = "Link del post a enviar a Steemit.Chat:"
+            SendButton.Text = "¡Enviar a Steemit.Chat!"
+            SteemitUsernameLabel.Text = "Tu usuario de Steemit:"
+            GetPostsButton.Text = "¡Obtener posts!"
+            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.1"
+            VoteWitnessLink.Text = "¡Click aquí para votarlo como Witness!"
+            DonateLink.Text = "¡O Dona!"
+        End If
+        My.Settings.Language = 2
+        My.Settings.Save()
+    End Sub
+
+    Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles DonateLink.LinkClicked
         Donations.ShowDialog()
-    End Sub
-
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Process.Start("https://steemit.com/@moisesmcardona")
     End Sub
 End Class

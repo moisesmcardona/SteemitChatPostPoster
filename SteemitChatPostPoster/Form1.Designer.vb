@@ -22,49 +22,52 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SendButton = New System.Windows.Forms.Button()
+        Me.UsernameLabel = New System.Windows.Forms.Label()
         Me.UserName = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.Password = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ChannelNameLabel = New System.Windows.Forms.Label()
         Me.RoomName = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CreditsAndVersionLabel = New System.Windows.Forms.Label()
         Me.Server = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ServerLabel = New System.Windows.Forms.Label()
+        Me.AddToListButton = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.RemoveButton = New System.Windows.Forms.Button()
         Me.SteemitPostLink = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.LinkLabel = New System.Windows.Forms.Label()
         Me.SteemitUsername = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.SteemitUsernameLabel = New System.Windows.Forms.Label()
+        Me.GetPostsButton = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.VoteWitnessLink = New System.Windows.Forms.LinkLabel()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DonateLink = New System.Windows.Forms.LinkLabel()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'SendButton
         '
-        Me.Button1.Location = New System.Drawing.Point(141, 49)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(248, 98)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Send to Steemit.Chat!"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.SendButton.Location = New System.Drawing.Point(141, 49)
+        Me.SendButton.Name = "SendButton"
+        Me.SendButton.Size = New System.Drawing.Size(248, 98)
+        Me.SendButton.TabIndex = 5
+        Me.SendButton.Text = "Send to Steemit.Chat!"
+        Me.SendButton.UseVisualStyleBackColor = True
         '
-        'Label1
+        'UsernameLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 49)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(58, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Username:"
+        Me.UsernameLabel.AutoSize = True
+        Me.UsernameLabel.Location = New System.Drawing.Point(7, 49)
+        Me.UsernameLabel.Name = "UsernameLabel"
+        Me.UsernameLabel.Size = New System.Drawing.Size(58, 13)
+        Me.UsernameLabel.TabIndex = 1
+        Me.UsernameLabel.Text = "Username:"
         '
         'UserName
         '
@@ -73,14 +76,14 @@ Partial Class Form1
         Me.UserName.Size = New System.Drawing.Size(125, 20)
         Me.UserName.TabIndex = 2
         '
-        'Label2
+        'PasswordLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(7, 88)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Password:"
+        Me.PasswordLabel.AutoSize = True
+        Me.PasswordLabel.Location = New System.Drawing.Point(7, 88)
+        Me.PasswordLabel.Name = "PasswordLabel"
+        Me.PasswordLabel.Size = New System.Drawing.Size(56, 13)
+        Me.PasswordLabel.TabIndex = 3
+        Me.PasswordLabel.Text = "Password:"
         '
         'Password
         '
@@ -90,14 +93,14 @@ Partial Class Form1
         Me.Password.Size = New System.Drawing.Size(125, 20)
         Me.Password.TabIndex = 3
         '
-        'Label3
+        'ChannelNameLabel
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 127)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 13)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Channel Name:"
+        Me.ChannelNameLabel.AutoSize = True
+        Me.ChannelNameLabel.Location = New System.Drawing.Point(7, 127)
+        Me.ChannelNameLabel.Name = "ChannelNameLabel"
+        Me.ChannelNameLabel.Size = New System.Drawing.Size(80, 13)
+        Me.ChannelNameLabel.TabIndex = 5
+        Me.ChannelNameLabel.Text = "Channel Name:"
         '
         'RoomName
         '
@@ -106,14 +109,14 @@ Partial Class Form1
         Me.RoomName.Size = New System.Drawing.Size(125, 20)
         Me.RoomName.TabIndex = 4
         '
-        'Label4
+        'CreditsAndVersionLabel
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(7, 333)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(101, 26)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "By: Moisés Cardona" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "v1.0"
+        Me.CreditsAndVersionLabel.AutoSize = True
+        Me.CreditsAndVersionLabel.Location = New System.Drawing.Point(7, 333)
+        Me.CreditsAndVersionLabel.Name = "CreditsAndVersionLabel"
+        Me.CreditsAndVersionLabel.Size = New System.Drawing.Size(115, 26)
+        Me.CreditsAndVersionLabel.TabIndex = 7
+        Me.CreditsAndVersionLabel.Text = "By: @moisesmcardona" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "v1.1"
         '
         'Server
         '
@@ -124,23 +127,23 @@ Partial Class Form1
         Me.Server.TabIndex = 1
         Me.Server.Text = "steemit.chat"
         '
-        'Label5
+        'ServerLabel
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(7, 9)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(41, 13)
-        Me.Label5.TabIndex = 8
-        Me.Label5.Text = "Server:"
+        Me.ServerLabel.AutoSize = True
+        Me.ServerLabel.Location = New System.Drawing.Point(7, 9)
+        Me.ServerLabel.Name = "ServerLabel"
+        Me.ServerLabel.Size = New System.Drawing.Size(41, 13)
+        Me.ServerLabel.TabIndex = 8
+        Me.ServerLabel.Text = "Server:"
         '
-        'Button2
+        'AddToListButton
         '
-        Me.Button2.Location = New System.Drawing.Point(10, 169)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(125, 23)
-        Me.Button2.TabIndex = 9
-        Me.Button2.Text = "Add To List"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.AddToListButton.Location = New System.Drawing.Point(10, 169)
+        Me.AddToListButton.Name = "AddToListButton"
+        Me.AddToListButton.Size = New System.Drawing.Size(125, 23)
+        Me.AddToListButton.TabIndex = 9
+        Me.AddToListButton.Text = "Add To List"
+        Me.AddToListButton.UseVisualStyleBackColor = True
         '
         'ListBox1
         '
@@ -150,15 +153,15 @@ Partial Class Form1
         Me.ListBox1.Size = New System.Drawing.Size(125, 95)
         Me.ListBox1.TabIndex = 10
         '
-        'Button3
+        'RemoveButton
         '
-        Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(10, 299)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(125, 23)
-        Me.Button3.TabIndex = 11
-        Me.Button3.Text = "Remove"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.RemoveButton.Enabled = False
+        Me.RemoveButton.Location = New System.Drawing.Point(10, 299)
+        Me.RemoveButton.Name = "RemoveButton"
+        Me.RemoveButton.Size = New System.Drawing.Size(125, 23)
+        Me.RemoveButton.TabIndex = 11
+        Me.RemoveButton.Text = "Remove"
+        Me.RemoveButton.UseVisualStyleBackColor = True
         '
         'SteemitPostLink
         '
@@ -167,14 +170,14 @@ Partial Class Form1
         Me.SteemitPostLink.Size = New System.Drawing.Size(248, 20)
         Me.SteemitPostLink.TabIndex = 12
         '
-        'Label6
+        'LinkLabel
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(138, 7)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(194, 13)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Link of the Post to send to Steemit.Chat"
+        Me.LinkLabel.AutoSize = True
+        Me.LinkLabel.Location = New System.Drawing.Point(138, 7)
+        Me.LinkLabel.Name = "LinkLabel"
+        Me.LinkLabel.Size = New System.Drawing.Size(194, 13)
+        Me.LinkLabel.TabIndex = 13
+        Me.LinkLabel.Text = "Link of the Post to send to Steemit.Chat"
         '
         'SteemitUsername
         '
@@ -183,23 +186,23 @@ Partial Class Form1
         Me.SteemitUsername.Size = New System.Drawing.Size(383, 20)
         Me.SteemitUsername.TabIndex = 14
         '
-        'Label7
+        'SteemitUsernameLabel
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(392, 6)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(121, 13)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "Your Steemit Username:"
+        Me.SteemitUsernameLabel.AutoSize = True
+        Me.SteemitUsernameLabel.Location = New System.Drawing.Point(392, 6)
+        Me.SteemitUsernameLabel.Name = "SteemitUsernameLabel"
+        Me.SteemitUsernameLabel.Size = New System.Drawing.Size(121, 13)
+        Me.SteemitUsernameLabel.TabIndex = 15
+        Me.SteemitUsernameLabel.Text = "Your Steemit Username:"
         '
-        'Button4
+        'GetPostsButton
         '
-        Me.Button4.Location = New System.Drawing.Point(395, 48)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(383, 34)
-        Me.Button4.TabIndex = 16
-        Me.Button4.Text = "Get my latest posts"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.GetPostsButton.Location = New System.Drawing.Point(395, 48)
+        Me.GetPostsButton.Name = "GetPostsButton"
+        Me.GetPostsButton.Size = New System.Drawing.Size(383, 34)
+        Me.GetPostsButton.TabIndex = 16
+        Me.GetPostsButton.Text = "Get my latest posts"
+        Me.GetPostsButton.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -223,97 +226,125 @@ Partial Class Form1
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.Location = New System.Drawing.Point(395, 88)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(383, 238)
+        Me.ListBox2.Size = New System.Drawing.Size(383, 290)
         Me.ListBox2.TabIndex = 19
         '
-        'WebBrowser1
+        'VoteWitnessLink
         '
-        Me.WebBrowser1.Location = New System.Drawing.Point(784, 9)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.ScriptErrorsSuppressed = True
-        Me.WebBrowser1.Size = New System.Drawing.Size(729, 320)
-        Me.WebBrowser1.TabIndex = 20
-        Me.WebBrowser1.Visible = False
+        Me.VoteWitnessLink.AutoSize = True
+        Me.VoteWitnessLink.Location = New System.Drawing.Point(7, 365)
+        Me.VoteWitnessLink.Name = "VoteWitnessLink"
+        Me.VoteWitnessLink.Size = New System.Drawing.Size(170, 13)
+        Me.VoteWitnessLink.TabIndex = 22
+        Me.VoteWitnessLink.TabStop = True
+        Me.VoteWitnessLink.Text = "Click Here to Vote him as Witness!"
         '
-        'Button5
+        'RadioButton1
         '
-        Me.Button5.Location = New System.Drawing.Point(141, 333)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(256, 23)
-        Me.Button5.TabIndex = 21
-        Me.Button5.Text = "Do you like this software? DONATE!"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(59, 17)
+        Me.RadioButton1.TabIndex = 23
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "English"
+        Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'LinkLabel1
+        'RadioButton2
         '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(506, 338)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(266, 13)
-        Me.LinkLabel1.TabIndex = 22
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Visit my profile: https://steemit.com/@moisesmcardona"
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(71, 19)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(63, 17)
+        Me.RadioButton2.TabIndex = 24
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Español"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Controls.Add(Me.RadioButton2)
+        Me.GroupBox1.Location = New System.Drawing.Point(250, 333)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(139, 42)
+        Me.GroupBox1.TabIndex = 25
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Language / Idioma"
+        '
+        'DonateLink
+        '
+        Me.DonateLink.AutoSize = True
+        Me.DonateLink.Location = New System.Drawing.Point(191, 365)
+        Me.DonateLink.Name = "DonateLink"
+        Me.DonateLink.Size = New System.Drawing.Size(59, 13)
+        Me.DonateLink.TabIndex = 26
+        Me.DonateLink.TabStop = True
+        Me.DonateLink.Text = "Or Donate!"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 365)
-        Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.WebBrowser1)
+        Me.ClientSize = New System.Drawing.Size(795, 393)
+        Me.Controls.Add(Me.DonateLink)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.VoteWitnessLink)
         Me.Controls.Add(Me.ListBox2)
         Me.Controls.Add(Me.Log)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.GetPostsButton)
         Me.Controls.Add(Me.SteemitUsername)
-        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.SteemitUsernameLabel)
         Me.Controls.Add(Me.SteemitPostLink)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.LinkLabel)
+        Me.Controls.Add(Me.RemoveButton)
         Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.AddToListButton)
         Me.Controls.Add(Me.Server)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.ServerLabel)
+        Me.Controls.Add(Me.CreditsAndVersionLabel)
         Me.Controls.Add(Me.RoomName)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.ChannelNameLabel)
         Me.Controls.Add(Me.Password)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.UserName)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.UsernameLabel)
+        Me.Controls.Add(Me.SendButton)
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Steemit.Chat Post Poster"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents SendButton As Button
+    Friend WithEvents UsernameLabel As Label
     Friend WithEvents UserName As TextBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents PasswordLabel As Label
     Friend WithEvents Password As TextBox
-    Friend WithEvents Label3 As Label
+    Friend WithEvents ChannelNameLabel As Label
     Friend WithEvents RoomName As TextBox
-    Friend WithEvents Label4 As Label
+    Friend WithEvents CreditsAndVersionLabel As Label
     Friend WithEvents Server As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents ServerLabel As Label
+    Friend WithEvents AddToListButton As Button
     Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents RemoveButton As Button
     Friend WithEvents SteemitPostLink As TextBox
-    Friend WithEvents Label6 As Label
+    Friend WithEvents LinkLabel As Label
     Friend WithEvents SteemitUsername As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Button4 As Button
+    Friend WithEvents SteemitUsernameLabel As Label
+    Friend WithEvents GetPostsButton As Button
     Friend WithEvents Label8 As Label
     Friend WithEvents Log As RichTextBox
     Friend WithEvents ListBox2 As ListBox
-    Friend WithEvents WebBrowser1 As WebBrowser
-    Friend WithEvents Button5 As Button
-    Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents VoteWitnessLink As LinkLabel
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DonateLink As LinkLabel
 End Class
