@@ -5,4 +5,4 @@ To use it, just type your Steemit.Chat username and password, Add the channels y
 
 You can also enter your Steemit Username to get a list of your latest posts so you can easily share the post link to the chat channels!
 
-Enjoy!
+Enjoy! And remember to vote me as Witness in Steemit if you like this tool! [Or click here to vote me as Witness using SteemConnect.](https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1)
