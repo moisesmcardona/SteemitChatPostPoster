@@ -237,10 +237,11 @@ Public Class Form1
     End Sub
 
     Private Sub ImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportToolStripMenuItem.Click
-        Dim BrowseChannelList As New OpenFileDialog
-        BrowseChannelList.Title = "Browse for a channel list file"
-        BrowseChannelList.FileName = ""
-        BrowseChannelList.Filter = "Channel List (*.lis)|*.lis"
+        Dim BrowseChannelList As New OpenFileDialog With {
+            .Title = "Browse for a channel list file",
+            .FileName = "",
+            .Filter = "Channel List (*.lis)|*.lis"
+        }
         Dim PressedOK As MsgBoxResult = BrowseChannelList.ShowDialog
         If PressedOK = MsgBoxResult.Ok Then
             Dim channels As String() = My.Computer.FileSystem.ReadAllText(BrowseChannelList.FileName).Split(vbCrLf)
@@ -255,10 +256,11 @@ Public Class Form1
     End Sub
 
     Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
-        Dim BrowseSaveLocation As New SaveFileDialog
-        BrowseSaveLocation.Title = "Browse for a location to save the channel list"
-        BrowseSaveLocation.FileName = ""
-        BrowseSaveLocation.Filter = "Channel List (*.lis)|*.lis"
+        Dim BrowseSaveLocation As New SaveFileDialog With {
+            .Title = "Browse for a location to save the channel list",
+            .FileName = "",
+            .Filter = "Channel List (*.lis)|*.lis"
+        }
         Dim PressedOK As MsgBoxResult = BrowseSaveLocation.ShowDialog
         If PressedOK = MsgBoxResult.Ok Then
             Dim channels As String = String.Empty
