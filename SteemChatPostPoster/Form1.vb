@@ -109,6 +109,7 @@ Public Class Form1
                     Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
                     Log.Text += "Posted Link to " & item & vbCrLf
                 Next
+                Log.Text + = "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness 🙂"
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
@@ -171,8 +172,8 @@ Public Class Form1
         SteemitPostLink.Text = "https://steemit.com" & SteemitLinks.Items.Item(ListBox2.SelectedIndex)
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles VoteWitnessLink.LinkClicked
-        Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
+       
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles EnglishRButton.CheckedChanged
@@ -187,12 +188,12 @@ Public Class Form1
             SendButton.Text = "Send to Steem.Chat!"
             SteemUsernameLabel.Text = "Your Steemit Username:"
             GetPostsButton.Text = "Get your latest posts!"
-            VoteWitnessLink.Text = "Click Here to Vote Him as Witness!"
-            DonateLink.Text = "Or Donate!"
+            VoteWitnessToolStripMenuItem.Text = "Vote Witness"
+            DonationsToolStripMenuItem.Text = "Donations"
             ChannelListToolStripMenuItem.Text = "Channel List"
             ExportToolStripMenuItem.Text = "Export"
             ImportToolStripMenuItem.Text = "Import"
-            SteemUserLink.Text = "By: @moisesmcardona"
+            SteemUserLink.Text = "By Witness @moisesmcardona"
         End If
         My.Settings.Language = 1
         My.Settings.Save()
@@ -210,18 +211,18 @@ Public Class Form1
             SendButton.Text = "¡Enviar a Steem.Chat!"
             SteemUsernameLabel.Text = "Tu usuario de Steemit:"
             GetPostsButton.Text = "¡Obtener posts!"
-            VoteWitnessLink.Text = "¡Click aquí para votarlo como Witness!"
-            DonateLink.Text = "¡O Dona!"
+            VoteWitnessToolStripMenuItem.Text = "Votar Witness"
+            DonationsToolStripMenuItem.Text = "Donar"
             ChannelListToolStripMenuItem.Text = "Lista de canales"
             ExportToolStripMenuItem.Text = "Exportar"
             ImportToolStripMenuItem.Text = "Importar"
-            SteemUserLink.Text = "Por: @moisesmcardona"
+            SteemUserLink.Text = "Por Witness @moisesmcardona"
         End If
         My.Settings.Language = 2
         My.Settings.Save()
     End Sub
 
-    Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles DonateLink.LinkClicked
+    Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
         Donations.ShowDialog()
     End Sub
 
@@ -275,5 +276,13 @@ Public Class Form1
 
     Private Sub SteemUserLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles SteemUserLink.LinkClicked
         Process.Start("https://steemit.com/@moisesmcardona")
+    End Sub
+
+    Private Sub VoteWitnessToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VoteWitnessToolStripMenuItem.Click
+         Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
+    End Sub
+
+    Private Sub DonationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DonationsToolStripMenuItem.Click
+
     End Sub
 End Class

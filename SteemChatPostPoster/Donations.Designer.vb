@@ -31,11 +31,11 @@ Partial Class Donations
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.SuspendLayout()
+        Me.SuspendLayout
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(23, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
@@ -44,7 +44,7 @@ Partial Class Donations
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(23, 59)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
@@ -53,7 +53,7 @@ Partial Class Donations
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(23, 160)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(44, 13)
@@ -62,31 +62,37 @@ Partial Class Donations
         '
         'TextBox1
         '
+        Me.TextBox1.BackColor = System.Drawing.Color.White
         Me.TextBox1.Location = New System.Drawing.Point(26, 26)
         Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = true
         Me.TextBox1.Size = New System.Drawing.Size(246, 20)
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.Text = "1CmuQdbwwgM9TnyuqNLjk7eeVhCoFbuuM3"
         '
         'TextBox2
         '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
         Me.TextBox2.Location = New System.Drawing.Point(26, 75)
         Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = true
         Me.TextBox2.Size = New System.Drawing.Size(246, 20)
         Me.TextBox2.TabIndex = 2
         Me.TextBox2.Text = "SAw6dAHTe2oZQTkLGCRjakB5pyHBu8hsAy"
         '
         'TextBox3
         '
+        Me.TextBox3.BackColor = System.Drawing.Color.White
         Me.TextBox3.Location = New System.Drawing.Point(26, 176)
         Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = true
         Me.TextBox3.Size = New System.Drawing.Size(246, 20)
         Me.TextBox3.TabIndex = 4
         Me.TextBox3.Text = "moisesmcardona"
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(8, 179)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(18, 13)
@@ -95,7 +101,7 @@ Partial Class Donations
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(23, 108)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(52, 13)
@@ -104,15 +110,17 @@ Partial Class Donations
         '
         'TextBox4
         '
+        Me.TextBox4.BackColor = System.Drawing.Color.White
         Me.TextBox4.Location = New System.Drawing.Point(26, 124)
         Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ReadOnly = true
         Me.TextBox4.Size = New System.Drawing.Size(246, 20)
         Me.TextBox4.TabIndex = 3
         Me.TextBox4.Text = "BURST-SRQE-UY26-2H7P-GNX89"
         '
-        'Donations_Addresses
+        'Donations
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 213)
         Me.Controls.Add(Me.TextBox4)
@@ -124,14 +132,14 @@ Partial Class Donations
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "Donations_Addresses"
+        Me.MaximizeBox = false
+        Me.MinimizeBox = false
+        Me.Name = "Donations"
         Me.Text = "Donations Addresses"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
