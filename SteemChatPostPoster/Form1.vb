@@ -58,6 +58,10 @@ Public Class Form1
             ValidationMessage += "-Channel Name(s)" & vbCrLf
             ValidationError = True
         End If
+        If String.IsNullOrEmpty(SteemitPostLink .Text) Then
+            ValidationMessage += "-Post Link or message" & vbCrLf
+            ValidationError = True
+        End If
         If ValidationError Then
             ValidationMessage += vbCrLf & "Please fill the above fields to start using this Bot"
             MessageBox.Show(ValidationMessage)
@@ -81,6 +85,10 @@ Public Class Form1
         End If
         If RoomsList.Items.Count = 0 Then
             ValidationMessage += "-Nombre del canal o de los canales" & vbCrLf
+            ValidationError = True
+        End If
+        If String.IsNullOrEmpty(SteemitPostLink .Text) Then
+            ValidationMessage += "-Link del post o mensaje" & vbCrLf
             ValidationError = True
         End If
         If ValidationError Then
