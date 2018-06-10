@@ -283,6 +283,6 @@ Public Class Form1
     End Sub
 
     Private Sub DonationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DonationsToolStripMenuItem.Click
-
+        Donations.ShowDialog 
     End Sub
 End Class
