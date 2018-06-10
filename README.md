@@ -10,10 +10,10 @@ If you want to send your post to different channels but need to remove and add m
 Enjoy! And remember to vote me as Witness in Steemit if you like this tool! [Or click here to vote me as Witness using SteemConnect.](https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1). You can also vote me by pressing the "Vote Witness" menu item in the software!
 
 # Screenshots:
-English GUI:
+English GUI:  
 ![](https://ipfs.steem.place/ipfs/QmVg8zdctgNaSpA9HpzFkYuUgwFtTFaQvRDCgxi64v6tK4)
 
-Spanish GUI:
+Spanish GUI:  
 ![](https://ipfs.steem.place/ipfs/Qmf2gbCbrS7o17mbo1RbrFDYr44UHVV2rvPc9QQusrATLA)
 
 # For developers
