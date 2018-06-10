@@ -109,7 +109,7 @@ Public Class Form1
                     Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
                     Log.Text += "Posted Link to " & item & vbCrLf
                 Next
-                Log.Text + = "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness 🙂"
+                Log.Text += "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness 🙂"
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
@@ -172,8 +172,8 @@ Public Class Form1
         SteemitPostLink.Text = "https://steemit.com" & SteemitLinks.Items.Item(ListBox2.SelectedIndex)
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
-       
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles EnglishRButton.CheckedChanged
@@ -222,7 +222,7 @@ Public Class Form1
         My.Settings.Save()
     End Sub
 
-    Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
+    Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         Donations.ShowDialog()
     End Sub
 
@@ -246,7 +246,8 @@ Public Class Form1
         If PressedOK = MsgBoxResult.Ok Then
             Dim channels As String() = My.Computer.FileSystem.ReadAllText(BrowseChannelList.FileName).Split(vbCrLf)
             My.Settings.Rooms.Clear()
-            RoomsList.Items.clear
+            RoomsList.Items.Clear()
+
             For Each channel In channels
                 RoomsList.Items.Add(channel)
                 My.Settings.Rooms.Add(channel)
@@ -281,10 +282,10 @@ Public Class Form1
     End Sub
 
     Private Sub VoteWitnessToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VoteWitnessToolStripMenuItem.Click
-         Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
+        Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
     End Sub
 
     Private Sub DonationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DonationsToolStripMenuItem.Click
-        Donations.ShowDialog 
+        Donations.ShowDialog()
     End Sub
 End Class
