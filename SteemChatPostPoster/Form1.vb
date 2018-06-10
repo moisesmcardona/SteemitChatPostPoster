@@ -105,11 +105,11 @@ Public Class Form1
                 For Each item In RoomsList.Items
                     Dim getChannelID = Await driver.GetRoomIdAsync(item)
                     Dim RoomIDResult = getChannelID.Result
-                    Await driver.SubscribeToRoomAsync(RoomIDResult)
-                    Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
+                    'Await driver.SubscribeToRoomAsync(RoomIDResult)
+                    'Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
                     Log.Text += "Posted Link to " & item & vbCrLf
                 Next
-                Log.Text += "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness 🙂"
+                Log.Text += "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness"
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
@@ -240,13 +240,18 @@ Public Class Form1
         }
         Dim PressedOK As MsgBoxResult = BrowseChannelList.ShowDialog
         If PressedOK = MsgBoxResult.Ok Then
-            Dim channels As String() = My.Computer.FileSystem.ReadAllText(BrowseChannelList.FileName).Split(vbCrLf)
+            Dim ChannelList As new StreamReader(BrowseChannelList.FileName)
             My.Settings.Rooms.Clear()
             RoomsList.Items.Clear()
-            For Each channel In channels
-                RoomsList.Items.Add(channel)
-                My.Settings.Rooms.Add(channel)
-            Next
+            While Not ChannelList.EndOfStream
+                Dim channel As String = channellist.ReadLine 
+                 If Not String.IsNullOrEmpty(channel) Then
+                    RoomsList.Items.Add(channel)
+                    My.Settings.Rooms.Add(channel)
+                End If
+            End While
+            ChannelList.Close()
+            If RemoveButton.Enabled = False Then RemoveButton.Enabled = True
             My.Settings.Save()
         End If
     End Sub
