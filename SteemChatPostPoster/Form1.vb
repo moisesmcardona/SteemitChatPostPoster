@@ -172,10 +172,6 @@ Public Class Form1
         SteemitPostLink.Text = "https://steemit.com" & SteemitLinks.Items.Item(ListBox2.SelectedIndex)
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-
-    End Sub
-
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles EnglishRButton.CheckedChanged
         If EnglishRButton.Checked Then
             ServerLabel.Text = "Server:"
@@ -247,7 +243,6 @@ Public Class Form1
             Dim channels As String() = My.Computer.FileSystem.ReadAllText(BrowseChannelList.FileName).Split(vbCrLf)
             My.Settings.Rooms.Clear()
             RoomsList.Items.Clear()
-
             For Each channel In channels
                 RoomsList.Items.Add(channel)
                 My.Settings.Rooms.Add(channel)
