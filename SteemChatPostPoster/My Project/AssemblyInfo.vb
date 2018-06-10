@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Steemit.Chat Post Poster")>
-<Assembly: AssemblyDescription("A software to post your Steem posts into Steemit.Chat")>
+<Assembly: AssemblyTitle("Steem.Chat Post Poster")>
+<Assembly: AssemblyDescription("A software to post your Steem posts to Steem.Chat")>
 <Assembly: AssemblyCompany("Moises Cardona")>
-<Assembly: AssemblyProduct("Steemit.Chat Post Poster")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyProduct("Steem.Chat Post Poster")>
+<Assembly: AssemblyCopyright("Copyright ©  2017-2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.0.0")>
-<Assembly: AssemblyFileVersion("1.1.0.0")>
+<Assembly: AssemblyVersion("1.2.0.0")>
+<Assembly: AssemblyFileVersion("1.2.0.0")>

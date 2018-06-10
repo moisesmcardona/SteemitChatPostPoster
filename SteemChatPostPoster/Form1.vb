@@ -8,67 +8,114 @@ Public Class Form1
     Dim loginOption As ILoginOption
     Dim driver As IRocketChatDriver
     Dim SteemitLinks As New ListBox
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles AddToListButton.Click
+    Private Sub AddToListButton_Click(sender As Object, e As EventArgs) Handles AddToListButton.Click
         If String.IsNullOrEmpty(RoomName.Text) = False Then
-            ListBox1.Items.Add(RoomName.Text)
+            RoomsList.Items.Add(RoomName.Text)
             If RemoveButton.Enabled = False Then RemoveButton.Enabled = True
-        Else
-            MsgBox("Channel Name cannot be empty. Please type a Channel Name")
-        End If
-
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
-        If ListBox1.SelectedIndex <> -1 Then
-            ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
-        End If
-        If ListBox1.Items.Count = 0 Then
-            RemoveButton.Enabled = False
-        End If
-    End Sub
-
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles SendButton.Click
-        Dim ErrorMessage As String = "The following fields are empty:" & vbCrLf
-        Dim ErrorsFound As Boolean = False
-        If String.IsNullOrEmpty(Server.Text) Then
-            ErrorMessage += "-Server" & vbCrLf
-            ErrorsFound = True
-        End If
-        If String.IsNullOrEmpty(UserName.Text) Then
-            ErrorMessage += "-Username" & vbCrLf
-            ErrorsFound = True
-        End If
-        If String.IsNullOrEmpty(Password.Text) Then
-            ErrorMessage += "-Password" & vbCrLf
-            ErrorsFound = True
-        End If
-        If ListBox1.Items.Count = 0 Then
-            ErrorMessage += "-Channel Name(s)" & vbCrLf
-            ErrorsFound = True
-        End If
-        If ErrorsFound = False Then
-            My.Settings.Server = Server.Text
-            My.Settings.Username = UserName.Text
-            My.Settings.Password = Password.Text
             My.Settings.Rooms.Clear()
-            For Each item In ListBox1.Items
+            For Each item In RoomsList.Items
                 My.Settings.Rooms.Add(item)
             Next
             My.Settings.Save()
+        Else
+            If EnglishRButton.Checked Then
+                MsgBox("Channel Name cannot be empty. Please type a Channel Name.")
+            Else
+                MsgBox("El nombre del canal no puede estar vacio. Por favor, escriba un canal.")
+            End If
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
+        If RoomsList.SelectedIndex <> -1 Then
+            RoomsList.Items.RemoveAt(RoomsList.SelectedIndex)
+            My.Settings.Rooms.Clear()
+            For Each item In RoomsList.Items
+                My.Settings.Rooms.Add(item)
+            Next
+            My.Settings.Save()
+        End If
+        If RoomsList.Items.Count = 0 Then
+            RemoveButton.Enabled = False
+        End If
+    End Sub
+    Private Function ValidateEnglish() As String
+        Dim ValidationMessage As String = "The following fields are empty:" & vbCrLf
+        Dim ValidationError As Boolean = False
+        If String.IsNullOrEmpty(Server.Text) Then
+            ValidationMessage += "-Server" & vbCrLf
+            ValidationError = True
+        End If
+        If String.IsNullOrEmpty(UserName.Text) Then
+            ValidationMessage += "-Username" & vbCrLf
+            ValidationError = True
+        End If
+        If String.IsNullOrEmpty(Password.Text) Then
+            ValidationMessage += "-Password" & vbCrLf
+            ValidationError = True
+        End If
+        If RoomsList.Items.Count = 0 Then
+            ValidationMessage += "-Channel Name(s)" & vbCrLf
+            ValidationError = True
+        End If
+        If ValidationError Then
+            ValidationMessage += vbCrLf & "Please fill the above fields to start using this Bot"
+            MessageBox.Show(ValidationMessage)
+        End If
+        Return ValidationError
+    End Function
+    Private Function ValidateSpanish() As String
+        Dim ValidationMessage As String = "Los siguientes campos están vacíos:" & vbCrLf
+        Dim ValidationError As Boolean = False
+        If String.IsNullOrEmpty(Server.Text) Then
+            ValidationMessage += "-Servidor" & vbCrLf
+            ValidationError = True
+        End If
+        If String.IsNullOrEmpty(UserName.Text) Then
+            ValidationMessage += "-Nombre de usuario" & vbCrLf
+            ValidationError = True
+        End If
+        If String.IsNullOrEmpty(Password.Text) Then
+            ValidationMessage += "-Contraseña" & vbCrLf
+            ValidationError = True
+        End If
+        If RoomsList.Items.Count = 0 Then
+            ValidationMessage += "-Nombre del canal o de los canales" & vbCrLf
+            ValidationError = True
+        End If
+        If ValidationError Then
+            ValidationMessage += vbCrLf & "Por favor, corrija los campos mencionados arriba para poder utilizar este bot"
+            MessageBox.Show(ValidationMessage)
+        End If
+        Return ValidationError
+    End Function
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles SendButton.Click
+        Dim ValidationError As Boolean = False
+        If EnglishRButton.Checked Then
+            ValidationError = ValidateEnglish()
+        Else
+            ValidationError = ValidateSpanish()
+        End If
+        If ValidationError = False Then
             loginOption = New LdapLoginOption() With {.Username = UserName.Text, .Password = Password.Text}
             driver = New RocketChatDriver(Server.Text, True)
             Await driver.ConnectAsync()
             Await driver.LoginAsync(loginOption)
-            For Each item In ListBox1.Items
-                Dim getChannelID = Await driver.GetRoomIdAsync(item)
-                Dim RoomIDResult = getChannelID.Result
-                Await driver.SubscribeToRoomAsync(RoomIDResult)
-                Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
-                Log.Text += "Posted Link to " & item & vbCrLf
-            Next
-        Else
-            ErrorMessage += vbCrLf & "Please fill the above fields to start using this Bot"
-            MsgBox(ErrorMessage)
+            If driver.Username IsNot Nothing Then
+                For Each item In RoomsList.Items
+                    Dim getChannelID = Await driver.GetRoomIdAsync(item)
+                    Dim RoomIDResult = getChannelID.Result
+                    Await driver.SubscribeToRoomAsync(RoomIDResult)
+                    Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
+                    Log.Text += "Posted Link to " & item & vbCrLf
+                Next
+            Else
+                If EnglishRButton.Checked Then
+                    MessageBox.Show("The username and/or password provided is invalid")
+                Else
+                    MessageBox.Show("El nombre de usuario o contraseña es inválido")
+                End If
+            End If
         End If
     End Sub
 
@@ -79,9 +126,9 @@ Public Class Form1
         UserName.Text = My.Settings.Username
         Password.Text = My.Settings.Password
         For Each item In My.Settings.Rooms
-            ListBox1.Items.Add(item)
+            RoomsList.Items.Add(item)
         Next
-        If ListBox1.Items.Count > 0 Then
+        If RoomsList.Items.Count > 0 Then
             RemoveButton.Enabled = True
         End If
         If String.IsNullOrEmpty(My.Settings.SteemitUsername) Then
@@ -90,9 +137,9 @@ Public Class Form1
             SteemitUsername.Text = My.Settings.SteemitUsername
         End If
         If My.Settings.Language = 1 Then
-            RadioButton1.Checked = True
+            EnglishRButton.Checked = True
         Else
-            RadioButton2.Checked = True
+            SpanishRButton.Checked = True
         End If
 
     End Sub
@@ -128,8 +175,8 @@ Public Class Form1
         Process.Start("https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1")
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-        If RadioButton1.Checked Then
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles EnglishRButton.CheckedChanged
+        If EnglishRButton.Checked Then
             ServerLabel.Text = "Server:"
             UsernameLabel.Text = "Username:"
             PasswordLabel.Text = "Password:"
@@ -138,9 +185,9 @@ Public Class Form1
             RemoveButton.Text = "Remove"
             LinkLabel.Text = "Link of the Post to send to Steemit.Chat:"
             SendButton.Text = "Send to Steemit.Chat!"
-            SteemitUsernameLabel.Text = "Your Steemit Username:"
+            SteemUsernameLabel.Text = "Your Steemit Username:"
             GetPostsButton.Text = "Get your latest posts!"
-            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.1"
+            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.2"
             VoteWitnessLink.Text = "Click Here to Vote Him as Witness!"
             DonateLink.Text = "Or Donate!"
         End If
@@ -148,8 +195,8 @@ Public Class Form1
         My.Settings.Save()
     End Sub
 
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked Then
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles SpanishRButton.CheckedChanged
+        If SpanishRButton.Checked Then
             ServerLabel.Text = "Servidor:"
             UsernameLabel.Text = "Usuario:"
             PasswordLabel.Text = "Contraseña:"
@@ -158,9 +205,9 @@ Public Class Form1
             RemoveButton.Text = "Remover"
             LinkLabel.Text = "Link del post a enviar a Steemit.Chat:"
             SendButton.Text = "¡Enviar a Steemit.Chat!"
-            SteemitUsernameLabel.Text = "Tu usuario de Steemit:"
+            SteemUsernameLabel.Text = "Tu usuario de Steemit:"
             GetPostsButton.Text = "¡Obtener posts!"
-            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.1"
+            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.2"
             VoteWitnessLink.Text = "¡Click aquí para votarlo como Witness!"
             DonateLink.Text = "¡O Dona!"
         End If
@@ -170,5 +217,15 @@ Public Class Form1
 
     Private Sub DonateLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles DonateLink.LinkClicked
         Donations.ShowDialog()
+    End Sub
+
+    Private Sub UserName_TextChanged(sender As Object, e As EventArgs) Handles UserName.TextChanged
+        My.Settings.Username = UserName.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Password_TextChanged(sender As Object, e As EventArgs) Handles Password.TextChanged
+        My.Settings.Password = Password.Text
+        My.Settings.Save()
     End Sub
 End Class
