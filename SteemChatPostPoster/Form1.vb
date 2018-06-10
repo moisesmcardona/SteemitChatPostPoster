@@ -187,9 +187,12 @@ Public Class Form1
             SendButton.Text = "Send to Steemit.Chat!"
             SteemUsernameLabel.Text = "Your Steemit Username:"
             GetPostsButton.Text = "Get your latest posts!"
-            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.2"
+            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.3"
             VoteWitnessLink.Text = "Click Here to Vote Him as Witness!"
             DonateLink.Text = "Or Donate!"
+            ChannelListToolStripMenuItem.Text = "Channel List"
+            ExportToolStripMenuItem.Text = "Export"
+            ImportToolStripMenuItem.Text = "Import"
         End If
         My.Settings.Language = 1
         My.Settings.Save()
@@ -207,9 +210,12 @@ Public Class Form1
             SendButton.Text = "¡Enviar a Steemit.Chat!"
             SteemUsernameLabel.Text = "Tu usuario de Steemit:"
             GetPostsButton.Text = "¡Obtener posts!"
-            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.2"
+            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.3"
             VoteWitnessLink.Text = "¡Click aquí para votarlo como Witness!"
             DonateLink.Text = "¡O Dona!"
+            ChannelListToolStripMenuItem.Text = "Lista de canales"
+            ExportToolStripMenuItem.Text = "Exportar"
+            ImportToolStripMenuItem.Text = "Importar"
         End If
         My.Settings.Language = 2
         My.Settings.Save()
@@ -227,5 +233,43 @@ Public Class Form1
     Private Sub Password_TextChanged(sender As Object, e As EventArgs) Handles Password.TextChanged
         My.Settings.Password = Password.Text
         My.Settings.Save()
+    End Sub
+
+    Private Sub ImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportToolStripMenuItem.Click
+        Dim BrowseChannelList As New OpenFileDialog
+        BrowseChannelList.Title = "Browse for a channel list file"
+        BrowseChannelList.FileName = ""
+        BrowseChannelList.Filter = "Channel List (*.lis)|*.lis"
+        Dim PressedOK As MsgBoxResult = BrowseChannelList.ShowDialog
+        If PressedOK = MsgBoxResult.Ok Then
+            Dim channels As String() = My.Computer.FileSystem.ReadAllText(BrowseChannelList.FileName).Split(vbCrLf)
+            My.Settings.Rooms.Clear()
+            RoomsList.Items.clear
+            For Each channel In channels
+                RoomsList.Items.Add(channel)
+                My.Settings.Rooms.Add(channel)
+            Next
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
+        Dim BrowseSaveLocation As New SaveFileDialog
+        BrowseSaveLocation.Title = "Browse for a location to save the channel list"
+        BrowseSaveLocation.FileName = ""
+        BrowseSaveLocation.Filter = "Channel List (*.lis)|*.lis"
+        Dim PressedOK As MsgBoxResult = BrowseSaveLocation.ShowDialog
+        If PressedOK = MsgBoxResult.Ok Then
+            Dim channels As String = String.Empty
+            For Each item In RoomsList.Items
+                channels = channels + item + vbCrLf
+            Next
+            My.Computer.FileSystem.WriteAllText(BrowseSaveLocation.FileName, channels, False)
+            If EnglishRButton.Checked Then
+                MessageBox.Show("Channel list saved successfully")
+            Else
+                MessageBox.Show("La lista de canales ha sido guardada exitosamente.")
+            End If
+        End If
     End Sub
 End Class
