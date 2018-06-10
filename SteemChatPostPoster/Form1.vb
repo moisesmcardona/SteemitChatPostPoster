@@ -91,10 +91,16 @@ Public Class Form1
     End Function
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles SendButton.Click
         Dim ValidationError As Boolean = False
+        Dim PostedMessage As String = String.Empty
+        Dim ThankYouMessage As String = String.Empty
         If EnglishRButton.Checked Then
             ValidationError = ValidateEnglish()
+            PostedMessage = "Posted Link to "
+            ThankYouMessage = "--------" + vbCrLf + "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness."
         Else
             ValidationError = ValidateSpanish()
+             PostedMessage = "Link posteado en "
+            ThankYouMessage = "--------" + vbCrLf + "Gracias por utilizar este programa." + vbCrLf + "Agradeceré que votes al Witness @moisesmcardona. Presiona el menú titulado ""Votar Witness"" para votarlo. ¡Gracias!"
         End If
         If ValidationError = False Then
             loginOption = New LdapLoginOption() With {.Username = UserName.Text, .Password = Password.Text}
@@ -107,9 +113,9 @@ Public Class Form1
                     Dim RoomIDResult = getChannelID.Result
                     Await driver.SubscribeToRoomAsync(RoomIDResult)
                     Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
-                    Log.Text += "Posted Link to " & item & vbCrLf
+                    Log.Text += PostedMessage + item + vbCrLf
                 Next
-                Log.Text += "--------" + vbCrLf + "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness"
+                Log.Text += ThankYouMessage 
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
