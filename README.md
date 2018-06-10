@@ -1,5 +1,5 @@
 # SteemitChatPostPoster
-A tool that will post the links of your posts to Steem.Chat channels to promote them
+A tool that will post the links of your posts to Steem.Chat channels to promote them.
 
 To use it, just type your Steem.Chat username and password, Add the channels you wish to post your post links to, and then add the link to your post and press the "Send to Steem.Chat!" button.
 
@@ -17,4 +17,6 @@ Spanish GUI:
 ![](https://ipfs.steem.place/ipfs/Qmf2gbCbrS7o17mbo1RbrFDYr44UHVV2rvPc9QQusrATLA)
 
 # For developers
-This project depends on the Rocket.Chat.Net package which is available as a NuGet package. When you load this project in Visual Studio 2017, it will download the dependencies. This project has been written in Visual Basic .NET. Enjoy!
+This project depends on the Rocket.Chat.Net package which is available as a NuGet package. When you load this project in Visual Studio 2017, it will download the dependencies. This project has been written in Visual Basic .NET. 
+
+Enjoy!
