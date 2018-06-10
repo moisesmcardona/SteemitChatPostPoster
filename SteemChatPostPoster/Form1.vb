@@ -58,7 +58,7 @@ Public Class Form1
             ValidationMessage += "-Channel Name(s)" & vbCrLf
             ValidationError = True
         End If
-        If String.IsNullOrEmpty(SteemitPostLink .Text) Then
+        If String.IsNullOrEmpty(SteemitPostLink.Text) Then
             ValidationMessage += "-Post Link or message" & vbCrLf
             ValidationError = True
         End If
@@ -87,7 +87,7 @@ Public Class Form1
             ValidationMessage += "-Nombre del canal o de los canales" & vbCrLf
             ValidationError = True
         End If
-        If String.IsNullOrEmpty(SteemitPostLink .Text) Then
+        If String.IsNullOrEmpty(SteemitPostLink.Text) Then
             ValidationMessage += "-Link del post o mensaje" & vbCrLf
             ValidationError = True
         End If
@@ -107,7 +107,7 @@ Public Class Form1
             ThankYouMessage = "--------" + vbCrLf + "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness."
         Else
             ValidationError = ValidateSpanish()
-             PostedMessage = "Link posteado en "
+            PostedMessage = "Link posteado en "
             ThankYouMessage = "--------" + vbCrLf + "Gracias por utilizar este programa." + vbCrLf + "Agradeceré que votes al Witness @moisesmcardona. Presiona el menú titulado ""Votar Witness"" para votarlo. ¡Gracias!"
         End If
         If ValidationError = False Then
@@ -123,7 +123,7 @@ Public Class Form1
                     Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
                     Log.Text += PostedMessage + item + vbCrLf
                 Next
-                Log.Text += ThankYouMessage 
+                Log.Text += ThankYouMessage
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
