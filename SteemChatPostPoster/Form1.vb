@@ -105,11 +105,11 @@ Public Class Form1
                 For Each item In RoomsList.Items
                     Dim getChannelID = Await driver.GetRoomIdAsync(item)
                     Dim RoomIDResult = getChannelID.Result
-                    'Await driver.SubscribeToRoomAsync(RoomIDResult)
-                    'Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
+                    Await driver.SubscribeToRoomAsync(RoomIDResult)
+                    Await driver.SendMessageAsync(SteemitPostLink.Text, RoomIDResult)
                     Log.Text += "Posted Link to " & item & vbCrLf
                 Next
-                Log.Text += "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness"
+                Log.Text += "--------" + vbCrLf + "Thanks for using this software. " + vbCrLf + "It would be appreciated if you vote @moisesmcardona as a Witness. Press the ""Vote Witness"" menu item above to vote him as a Witness"
             Else
                 If EnglishRButton.Checked Then
                     MessageBox.Show("The username and/or password provided is invalid")
@@ -233,19 +233,25 @@ Public Class Form1
     End Sub
 
     Private Sub ImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportToolStripMenuItem.Click
+        Dim BrowseMessage As String = String.Empty
+        If EnglishRButton.Checked Then
+            BrowseMessage = "Browse for a channel list file"
+        Else
+            BrowseMessage = "Busque un archivo de lista de canales"
+        End If
         Dim BrowseChannelList As New OpenFileDialog With {
-            .Title = "Browse for a channel list file",
+            .Title = BrowseMessage,
             .FileName = "",
             .Filter = "Channel List (*.lis)|*.lis"
         }
         Dim PressedOK As MsgBoxResult = BrowseChannelList.ShowDialog
         If PressedOK = MsgBoxResult.Ok Then
-            Dim ChannelList As new StreamReader(BrowseChannelList.FileName)
+            Dim ChannelList As New StreamReader(BrowseChannelList.FileName)
             My.Settings.Rooms.Clear()
             RoomsList.Items.Clear()
             While Not ChannelList.EndOfStream
-                Dim channel As String = channellist.ReadLine 
-                 If Not String.IsNullOrEmpty(channel) Then
+                Dim channel As String = ChannelList.ReadLine
+                If Not String.IsNullOrEmpty(channel) Then
                     RoomsList.Items.Add(channel)
                     My.Settings.Rooms.Add(channel)
                 End If
@@ -257,23 +263,29 @@ Public Class Form1
     End Sub
 
     Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
+        Dim SuccessMessage As String = String.Empty
+        Dim BrowseMessage As String = String.Empty
+        If EnglishRButton.Checked Then
+            SuccessMessage = "Channel list saved successfully"
+            BrowseMessage = "Browse for a location to save the channel list"
+        Else
+            SuccessMessage = "La lista de canales ha sido guardada exitosamente."
+            BrowseMessage = "Busque un lugar para guardar la lista de canales"
+        End If
         Dim BrowseSaveLocation As New SaveFileDialog With {
-            .Title = "Browse for a location to save the channel list",
+             .Title = BrowseMessage,
             .FileName = "",
             .Filter = "Channel List (*.lis)|*.lis"
         }
         Dim PressedOK As MsgBoxResult = BrowseSaveLocation.ShowDialog
         If PressedOK = MsgBoxResult.Ok Then
             Dim channels As String = String.Empty
+            Dim ChannelList As New StreamWriter(BrowseSaveLocation.FileName, False)
             For Each item In RoomsList.Items
-                channels = channels + item + vbCrLf
+                ChannelList.WriteLine(item)
             Next
-            My.Computer.FileSystem.WriteAllText(BrowseSaveLocation.FileName, channels, False)
-            If EnglishRButton.Checked Then
-                MessageBox.Show("Channel list saved successfully")
-            Else
-                MessageBox.Show("La lista de canales ha sido guardada exitosamente.")
-            End If
+            ChannelList.Close()
+            MessageBox.Show(SuccessMessage)
         End If
     End Sub
 
