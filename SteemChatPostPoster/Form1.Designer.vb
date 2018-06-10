@@ -29,7 +29,7 @@ Partial Class Form1
         Me.Password = New System.Windows.Forms.TextBox()
         Me.ChannelNameLabel = New System.Windows.Forms.Label()
         Me.RoomName = New System.Windows.Forms.TextBox()
-        Me.CreditsAndVersionLabel = New System.Windows.Forms.Label()
+        Me.VersionLabel = New System.Windows.Forms.Label()
         Me.Server = New System.Windows.Forms.TextBox()
         Me.ServerLabel = New System.Windows.Forms.Label()
         Me.AddToListButton = New System.Windows.Forms.Button()
@@ -52,23 +52,24 @@ Partial Class Form1
         Me.ChannelListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SteemUserLink = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1.SuspendLayout
         Me.MenuStrip1.SuspendLayout
         Me.SuspendLayout
         '
         'SendButton
         '
-        Me.SendButton.Location = New System.Drawing.Point(146, 75)
+        Me.SendButton.Location = New System.Drawing.Point(146, 64)
         Me.SendButton.Name = "SendButton"
         Me.SendButton.Size = New System.Drawing.Size(248, 98)
         Me.SendButton.TabIndex = 5
-        Me.SendButton.Text = "Send to Steemit.Chat!"
+        Me.SendButton.Text = "Send to Steem.Chat!"
         Me.SendButton.UseVisualStyleBackColor = true
         '
         'UsernameLabel
         '
         Me.UsernameLabel.AutoSize = true
-        Me.UsernameLabel.Location = New System.Drawing.Point(12, 75)
+        Me.UsernameLabel.Location = New System.Drawing.Point(12, 64)
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(58, 13)
         Me.UsernameLabel.TabIndex = 1
@@ -76,7 +77,7 @@ Partial Class Form1
         '
         'UserName
         '
-        Me.UserName.Location = New System.Drawing.Point(15, 91)
+        Me.UserName.Location = New System.Drawing.Point(15, 80)
         Me.UserName.Name = "UserName"
         Me.UserName.Size = New System.Drawing.Size(125, 20)
         Me.UserName.TabIndex = 2
@@ -84,7 +85,7 @@ Partial Class Form1
         'PasswordLabel
         '
         Me.PasswordLabel.AutoSize = true
-        Me.PasswordLabel.Location = New System.Drawing.Point(12, 114)
+        Me.PasswordLabel.Location = New System.Drawing.Point(12, 103)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(56, 13)
         Me.PasswordLabel.TabIndex = 3
@@ -92,7 +93,7 @@ Partial Class Form1
         '
         'Password
         '
-        Me.Password.Location = New System.Drawing.Point(15, 130)
+        Me.Password.Location = New System.Drawing.Point(15, 119)
         Me.Password.Name = "Password"
         Me.Password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
         Me.Password.Size = New System.Drawing.Size(125, 20)
@@ -101,7 +102,7 @@ Partial Class Form1
         'ChannelNameLabel
         '
         Me.ChannelNameLabel.AutoSize = true
-        Me.ChannelNameLabel.Location = New System.Drawing.Point(12, 153)
+        Me.ChannelNameLabel.Location = New System.Drawing.Point(12, 142)
         Me.ChannelNameLabel.Name = "ChannelNameLabel"
         Me.ChannelNameLabel.Size = New System.Drawing.Size(80, 13)
         Me.ChannelNameLabel.TabIndex = 5
@@ -109,23 +110,23 @@ Partial Class Form1
         '
         'RoomName
         '
-        Me.RoomName.Location = New System.Drawing.Point(15, 169)
+        Me.RoomName.Location = New System.Drawing.Point(15, 158)
         Me.RoomName.Name = "RoomName"
         Me.RoomName.Size = New System.Drawing.Size(125, 20)
         Me.RoomName.TabIndex = 4
         '
-        'CreditsAndVersionLabel
+        'VersionLabel
         '
-        Me.CreditsAndVersionLabel.AutoSize = true
-        Me.CreditsAndVersionLabel.Location = New System.Drawing.Point(12, 359)
-        Me.CreditsAndVersionLabel.Name = "CreditsAndVersionLabel"
-        Me.CreditsAndVersionLabel.Size = New System.Drawing.Size(115, 26)
-        Me.CreditsAndVersionLabel.TabIndex = 7
-        Me.CreditsAndVersionLabel.Text = "By: @moisesmcardona"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"v1.3"
+        Me.VersionLabel.AutoSize = true
+        Me.VersionLabel.Location = New System.Drawing.Point(154, 380)
+        Me.VersionLabel.Name = "VersionLabel"
+        Me.VersionLabel.Size = New System.Drawing.Size(28, 13)
+        Me.VersionLabel.TabIndex = 7
+        Me.VersionLabel.Text = "v1.3"
         '
         'Server
         '
-        Me.Server.Location = New System.Drawing.Point(15, 51)
+        Me.Server.Location = New System.Drawing.Point(15, 40)
         Me.Server.Name = "Server"
         Me.Server.ReadOnly = true
         Me.Server.Size = New System.Drawing.Size(125, 20)
@@ -135,7 +136,7 @@ Partial Class Form1
         'ServerLabel
         '
         Me.ServerLabel.AutoSize = true
-        Me.ServerLabel.Location = New System.Drawing.Point(12, 35)
+        Me.ServerLabel.Location = New System.Drawing.Point(12, 24)
         Me.ServerLabel.Name = "ServerLabel"
         Me.ServerLabel.Size = New System.Drawing.Size(41, 13)
         Me.ServerLabel.TabIndex = 8
@@ -143,7 +144,7 @@ Partial Class Form1
         '
         'AddToListButton
         '
-        Me.AddToListButton.Location = New System.Drawing.Point(15, 195)
+        Me.AddToListButton.Location = New System.Drawing.Point(15, 184)
         Me.AddToListButton.Name = "AddToListButton"
         Me.AddToListButton.Size = New System.Drawing.Size(125, 23)
         Me.AddToListButton.TabIndex = 9
@@ -153,7 +154,7 @@ Partial Class Form1
         'RoomsList
         '
         Me.RoomsList.FormattingEnabled = true
-        Me.RoomsList.Location = New System.Drawing.Point(15, 224)
+        Me.RoomsList.Location = New System.Drawing.Point(15, 213)
         Me.RoomsList.Name = "RoomsList"
         Me.RoomsList.Size = New System.Drawing.Size(125, 95)
         Me.RoomsList.TabIndex = 10
@@ -161,7 +162,7 @@ Partial Class Form1
         'RemoveButton
         '
         Me.RemoveButton.Enabled = false
-        Me.RemoveButton.Location = New System.Drawing.Point(15, 325)
+        Me.RemoveButton.Location = New System.Drawing.Point(15, 314)
         Me.RemoveButton.Name = "RemoveButton"
         Me.RemoveButton.Size = New System.Drawing.Size(125, 23)
         Me.RemoveButton.TabIndex = 11
@@ -170,7 +171,7 @@ Partial Class Form1
         '
         'SteemitPostLink
         '
-        Me.SteemitPostLink.Location = New System.Drawing.Point(146, 49)
+        Me.SteemitPostLink.Location = New System.Drawing.Point(146, 38)
         Me.SteemitPostLink.Name = "SteemitPostLink"
         Me.SteemitPostLink.Size = New System.Drawing.Size(248, 20)
         Me.SteemitPostLink.TabIndex = 12
@@ -178,15 +179,15 @@ Partial Class Form1
         'LinkLabel
         '
         Me.LinkLabel.AutoSize = true
-        Me.LinkLabel.Location = New System.Drawing.Point(143, 33)
+        Me.LinkLabel.Location = New System.Drawing.Point(143, 22)
         Me.LinkLabel.Name = "LinkLabel"
-        Me.LinkLabel.Size = New System.Drawing.Size(194, 13)
+        Me.LinkLabel.Size = New System.Drawing.Size(189, 13)
         Me.LinkLabel.TabIndex = 13
-        Me.LinkLabel.Text = "Link of the Post to send to Steemit.Chat"
+        Me.LinkLabel.Text = "Link of the Post to send to Steem.Chat"
         '
         'SteemitUsername
         '
-        Me.SteemitUsername.Location = New System.Drawing.Point(400, 48)
+        Me.SteemitUsername.Location = New System.Drawing.Point(400, 37)
         Me.SteemitUsername.Name = "SteemitUsername"
         Me.SteemitUsername.Size = New System.Drawing.Size(383, 20)
         Me.SteemitUsername.TabIndex = 14
@@ -194,7 +195,7 @@ Partial Class Form1
         'SteemUsernameLabel
         '
         Me.SteemUsernameLabel.AutoSize = true
-        Me.SteemUsernameLabel.Location = New System.Drawing.Point(397, 32)
+        Me.SteemUsernameLabel.Location = New System.Drawing.Point(397, 21)
         Me.SteemUsernameLabel.Name = "SteemUsernameLabel"
         Me.SteemUsernameLabel.Size = New System.Drawing.Size(116, 13)
         Me.SteemUsernameLabel.TabIndex = 15
@@ -202,7 +203,7 @@ Partial Class Form1
         '
         'GetPostsButton
         '
-        Me.GetPostsButton.Location = New System.Drawing.Point(400, 74)
+        Me.GetPostsButton.Location = New System.Drawing.Point(400, 63)
         Me.GetPostsButton.Name = "GetPostsButton"
         Me.GetPostsButton.Size = New System.Drawing.Size(383, 34)
         Me.GetPostsButton.TabIndex = 16
@@ -212,7 +213,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = true
-        Me.Label8.Location = New System.Drawing.Point(143, 176)
+        Me.Label8.Location = New System.Drawing.Point(143, 165)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(28, 13)
         Me.Label8.TabIndex = 17
@@ -220,7 +221,7 @@ Partial Class Form1
         '
         'Log
         '
-        Me.Log.Location = New System.Drawing.Point(146, 195)
+        Me.Log.Location = New System.Drawing.Point(146, 184)
         Me.Log.Name = "Log"
         Me.Log.Size = New System.Drawing.Size(248, 153)
         Me.Log.TabIndex = 18
@@ -229,7 +230,7 @@ Partial Class Form1
         'ListBox2
         '
         Me.ListBox2.FormattingEnabled = true
-        Me.ListBox2.Location = New System.Drawing.Point(400, 114)
+        Me.ListBox2.Location = New System.Drawing.Point(400, 103)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(383, 290)
         Me.ListBox2.TabIndex = 19
@@ -237,7 +238,7 @@ Partial Class Form1
         'VoteWitnessLink
         '
         Me.VoteWitnessLink.AutoSize = true
-        Me.VoteWitnessLink.Location = New System.Drawing.Point(12, 391)
+        Me.VoteWitnessLink.Location = New System.Drawing.Point(12, 361)
         Me.VoteWitnessLink.Name = "VoteWitnessLink"
         Me.VoteWitnessLink.Size = New System.Drawing.Size(170, 13)
         Me.VoteWitnessLink.TabIndex = 22
@@ -270,7 +271,7 @@ Partial Class Form1
         '
         Me.GroupBox1.Controls.Add(Me.EnglishRButton)
         Me.GroupBox1.Controls.Add(Me.SpanishRButton)
-        Me.GroupBox1.Location = New System.Drawing.Point(255, 359)
+        Me.GroupBox1.Location = New System.Drawing.Point(255, 348)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(139, 42)
         Me.GroupBox1.TabIndex = 25
@@ -280,7 +281,7 @@ Partial Class Form1
         'DonateLink
         '
         Me.DonateLink.AutoSize = true
-        Me.DonateLink.Location = New System.Drawing.Point(196, 391)
+        Me.DonateLink.Location = New System.Drawing.Point(12, 377)
         Me.DonateLink.Name = "DonateLink"
         Me.DonateLink.Size = New System.Drawing.Size(59, 13)
         Me.DonateLink.TabIndex = 26
@@ -306,20 +307,31 @@ Partial Class Form1
         'ImportToolStripMenuItem
         '
         Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
-        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
         Me.ImportToolStripMenuItem.Text = "Import"
         '
         'ExportToolStripMenuItem
         '
         Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
         Me.ExportToolStripMenuItem.Text = "Export"
+        '
+        'SteemUserLink
+        '
+        Me.SteemUserLink.AutoSize = true
+        Me.SteemUserLink.Location = New System.Drawing.Point(12, 346)
+        Me.SteemUserLink.Name = "SteemUserLink"
+        Me.SteemUserLink.Size = New System.Drawing.Size(115, 13)
+        Me.SteemUserLink.TabIndex = 28
+        Me.SteemUserLink.TabStop = true
+        Me.SteemUserLink.Text = "By: @moisesmcardona"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(795, 415)
+        Me.ClientSize = New System.Drawing.Size(795, 407)
+        Me.Controls.Add(Me.SteemUserLink)
         Me.Controls.Add(Me.DonateLink)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.VoteWitnessLink)
@@ -336,7 +348,7 @@ Partial Class Form1
         Me.Controls.Add(Me.AddToListButton)
         Me.Controls.Add(Me.Server)
         Me.Controls.Add(Me.ServerLabel)
-        Me.Controls.Add(Me.CreditsAndVersionLabel)
+        Me.Controls.Add(Me.VersionLabel)
         Me.Controls.Add(Me.RoomName)
         Me.Controls.Add(Me.ChannelNameLabel)
         Me.Controls.Add(Me.Password)
@@ -365,7 +377,7 @@ End Sub
     Friend WithEvents Password As TextBox
     Friend WithEvents ChannelNameLabel As Label
     Friend WithEvents RoomName As TextBox
-    Friend WithEvents CreditsAndVersionLabel As Label
+    Friend WithEvents VersionLabel As Label
     Friend WithEvents Server As TextBox
     Friend WithEvents ServerLabel As Label
     Friend WithEvents AddToListButton As Button
@@ -388,4 +400,5 @@ End Sub
     Friend WithEvents ChannelListToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SteemUserLink As LinkLabel
 End Class

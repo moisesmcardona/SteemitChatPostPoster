@@ -183,16 +183,16 @@ Public Class Form1
             ChannelNameLabel.Text = "Channel Name:"
             AddToListButton.Text = "Add To List"
             RemoveButton.Text = "Remove"
-            LinkLabel.Text = "Link of the Post to send to Steemit.Chat:"
-            SendButton.Text = "Send to Steemit.Chat!"
+            LinkLabel.Text = "Link of the Post to send to Steem.Chat:"
+            SendButton.Text = "Send to Steem.Chat!"
             SteemUsernameLabel.Text = "Your Steemit Username:"
             GetPostsButton.Text = "Get your latest posts!"
-            CreditsAndVersionLabel.Text = "By: @moisesmcardona" & vbCrLf & "v1.3"
             VoteWitnessLink.Text = "Click Here to Vote Him as Witness!"
             DonateLink.Text = "Or Donate!"
             ChannelListToolStripMenuItem.Text = "Channel List"
             ExportToolStripMenuItem.Text = "Export"
             ImportToolStripMenuItem.Text = "Import"
+            SteemUserLink.Text = "By: @moisesmcardona"
         End If
         My.Settings.Language = 1
         My.Settings.Save()
@@ -206,16 +206,16 @@ Public Class Form1
             ChannelNameLabel.Text = "Nombre del canal:"
             AddToListButton.Text = "Añadir a Lista"
             RemoveButton.Text = "Remover"
-            LinkLabel.Text = "Link del post a enviar a Steemit.Chat:"
-            SendButton.Text = "¡Enviar a Steemit.Chat!"
+            LinkLabel.Text = "Link del post a enviar a Steem.Chat:"
+            SendButton.Text = "¡Enviar a Steem.Chat!"
             SteemUsernameLabel.Text = "Tu usuario de Steemit:"
             GetPostsButton.Text = "¡Obtener posts!"
-            CreditsAndVersionLabel.Text = "Por: @moisesmcardona" & vbCrLf & "v1.3"
             VoteWitnessLink.Text = "¡Click aquí para votarlo como Witness!"
             DonateLink.Text = "¡O Dona!"
             ChannelListToolStripMenuItem.Text = "Lista de canales"
             ExportToolStripMenuItem.Text = "Exportar"
             ImportToolStripMenuItem.Text = "Importar"
+            SteemUserLink.Text = "Por: @moisesmcardona"
         End If
         My.Settings.Language = 2
         My.Settings.Save()
@@ -271,5 +271,9 @@ Public Class Form1
                 MessageBox.Show("La lista de canales ha sido guardada exitosamente.")
             End If
         End If
+    End Sub
+
+    Private Sub SteemUserLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles SteemUserLink.LinkClicked
+        Process.Start("https://steemit.com/@moisesmcardona")
     End Sub
 End Class
